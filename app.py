@@ -173,6 +173,7 @@ def extract_info_row(patient):
     tool = language_tool_python.LanguageTool('en-US')
     s = """"""
     error_count = 0
+    score = 0
     try:
         # 尝试从 extract_info 中提取信息
         info = extract_info(client, patient)  # 示例信息提取
@@ -220,7 +221,7 @@ def extract_info_row(patient):
         button_visibility = gr.update(visible=False)  # 不显示绿色按钮
         error_visibility = gr.update(visible=True)
     save_info = gr.update(visible=False)
-    score = score - error_count
+    score -= error_count
 
     # 返回错误信息、建议和 DataFrame
     return s, df_styled, button_visibility, error_visibility, score, save_info
